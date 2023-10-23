@@ -19,7 +19,9 @@ namespace TravelPal
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-
+            TravelDetailsWindow travelDetailsWindow = new TravelDetailsWindow();
+            travelDetailsWindow.Show();
+            Close();
         }
     }
 }

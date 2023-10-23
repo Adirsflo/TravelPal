@@ -16,9 +16,12 @@
     <Resource Include="Image\TravelPalLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Image\TravelPalSplash.png">
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Image\TravelPalSplash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </SplashScreen>
   </ItemGroup>
 
 </Project>
