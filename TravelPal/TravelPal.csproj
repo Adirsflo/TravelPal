@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <None Remove="Image\TravelPalLogo.png" />
+    <None Remove="Image\TravelPalSplash.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Image\TravelPalLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\TravelPalSplash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
