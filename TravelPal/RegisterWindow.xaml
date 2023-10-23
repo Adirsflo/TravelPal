@@ -32,7 +32,7 @@
 
         <!--ELEMENTS-->
 
-        <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
+        <Image Grid.Column="4" Grid.Row="1" Grid.RowSpan="4" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
         <Border Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="9" Background="#D0D2F6" CornerRadius="30"/>
 
         <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>

@@ -30,11 +30,13 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
-        <Border Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="8" Background="#D0D2F6" CornerRadius="30"/>
+        <Image Grid.Column="4" Grid.Row="1" Grid.RowSpan="4" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
+        <Border Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Background="#D0D2F6" CornerRadius="5" Margin="0 2 0 7"/>
 
-        <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Content="Sign In" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
-        <Label Grid.Column="2" Grid.Row="3" Content="Username" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="Welcome Alexander123" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
+        <Label Grid.Column="1" Grid.Row="2" Content="*FullName*" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
+
+        <Label Grid.Column="1" Grid.Row="3" Content="Added Travels" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="2" Grid.Row="5" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
 
         <TextBox Name="txtUsername" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalContentAlignment="Center" Height="30" Width="260"/>

@@ -30,7 +30,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
+        <Image Grid.Column="4" Grid.Row="1" Grid.RowSpan="4" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
         <Border Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="8" Background="#D0D2F6" CornerRadius="30"/>
 
         <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Content="Sign In" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
@@ -46,6 +46,13 @@
                     <Style TargetType="Hyperlink"
                     BasedOn="{StaticResource {x:Type Hyperlink}}">
                         <Setter Property="Foreground" Value="#7B68EE"/>
+                        <Setter Property="TextBlock.TextDecorations" Value="None"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#F5FFFA" />
+                                <Setter Property="TextBlock.TextDecorations" Value="None" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </Hyperlink.Style>
                 Register a New User
