@@ -2,9 +2,6 @@
 
 namespace TravelPal
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -14,13 +11,16 @@ namespace TravelPal
 
         private void blkRegister_Click(object sender, RoutedEventArgs e)
         {
-
+            RegisterWindow registerWindow = new RegisterWindow();
+            registerWindow.Show();
+            Close();
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            TravelDetailsWindow travelDetailsWindow = new TravelDetailsWindow();
-            travelDetailsWindow.Show();
+
+            TravelsWindow travelsWindow = new TravelsWindow();
+            travelsWindow.Show();
             Close();
         }
     }

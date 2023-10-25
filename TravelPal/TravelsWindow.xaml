@@ -63,9 +63,9 @@
             </Hyperlink>
         </TextBlock>
 
-        <Button Name="btnSignOut" Grid.Column="4" Grid.Row="1" Height="25" Width="60" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Sign Out" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
-        <Button Name="btnDetails" Grid.Column="4" Grid.Row="5" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" Content="Details" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
-        <Button Name="btnAddTravel" Grid.Column="4" Grid.Row="6" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" Content="Add Travel" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
-        <Button Name="btnRemove" Grid.Column="4" Grid.Row="9" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Remove" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
+        <Button Name="btnSignOut" Grid.Column="4" Grid.Row="1" Height="25" Width="60" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Sign Out" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnSignOut_Click"/>
+        <Button Name="btnDetails" Grid.Column="4" Grid.Row="5" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" Content="Details" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnDetails_Click"/>
+        <Button Name="btnAddTravel" Grid.Column="4" Grid.Row="6" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" Content="Add Travel" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnAddTravel_Click"/>
+        <Button Name="btnRemove" Grid.Column="4" Grid.Row="9" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Remove" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnRemove_Click"/>
     </Grid>
 </Window>
