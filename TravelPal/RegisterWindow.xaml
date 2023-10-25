@@ -36,18 +36,18 @@
         <Border Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="9" Background="#D0D2F6" CornerRadius="30"/>
 
         <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
-        <Label Grid.Column="2" Grid.Row="3" Content="Country" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
-        <Label Grid.Column="2" Grid.Row="4" Content="Username" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
-        <Label Grid.Column="2" Grid.Row="5" Content="First Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
-        <Label Grid.Column="2" Grid.Row="6" Content="Last Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="2" Grid.Row="3" Content="Username" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="2" Grid.Row="4" Content="First Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="2" Grid.Row="5" Content="Last Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="2" Grid.Row="6" Content="Country" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="2" Grid.Row="7" Content="Create Password" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="2" Grid.Row="8" Content="Confirm Password" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
 
-        <ComboBox Name="cbNewCountry" Grid.Column="3" Grid.Row="3" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
+        <ComboBox Name="cbNewCountry" Grid.Column="3" Grid.Row="6" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
 
-        <TextBox Name="txtNewUsername" Grid.Column="3" Grid.Row="4" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
-        <TextBox Name="txtNewFirstName" Grid.Column="3" Grid.Row="5" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
-        <TextBox Name="txtNewLastName" Grid.Column="3" Grid.Row="6" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
+        <TextBox Name="txtNewUsername" Grid.Column="3" Grid.Row="3" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
+        <TextBox Name="txtNewFirstName" Grid.Column="3" Grid.Row="4" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
+        <TextBox Name="txtNewLastName" Grid.Column="3" Grid.Row="5" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
         <PasswordBox Name="txtNewPassword" Grid.Column="3" Grid.Row="7" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
         <PasswordBox Name="txtConfirmPassword" Grid.Column="3" Grid.Row="8" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
 

@@ -39,12 +39,12 @@
         <Label Name="lblDetails" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="Details" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
         <Label Name="lblFullName" Grid.Column="1" Grid.Row="2" Content="*Country*" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
         
-        <Label Grid.Column="1" Grid.Row="5" Content="City" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="1" Grid.Row="4" Content="Country" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="1" Grid.Row="5" Content="City" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="1" Grid.Row="6" Content="Ammount of TravelPals" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Grid.Column="1" Grid.Row="7" Content="Length of Trip" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="1" Grid.Row="8" Content="From" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="1" Grid.Row="9" Content="To" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
-        <Label Grid.Column="1" Grid.Row="7" Content="Length of Trip" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="3" Grid.Row="4" Content="Purpose of Trip" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Name="lblPurposeOfTrip" Grid.Column="3" Grid.Row="5" Content="*Type of Trip*" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Content="Packlist" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
@@ -54,10 +54,10 @@
 
         <ListView Name="lstPacklist" Grid.Column="5" Grid.Row="6" Grid.RowSpan="4" Margin="0 5 7 5"/>
 
-        <TextBox Grid.Column="2" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False"/>
-        <TextBox Grid.Column="2" Grid.Row="6" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <TextBox Name="txtCity" Grid.Column="2" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <TextBox Name="txtAmmountTravelers" Grid.Column="2" Grid.Row="6" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False"/>
         <TextBox Name="txtLengthOfTrip" Grid.Column="2" Grid.Row="7" Height="30" Margin="0 0 18 0" VerticalContentAlignment="Center" IsEnabled="False"/>
-        <TextBox Grid.Column="4" Grid.Row="7" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <TextBox Name="txtItem" Grid.Column="4" Grid.Row="7" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False"/>
         <TextBox Name="txtQuantity" Grid.Column="4" Grid.Row="9" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEnabled="False" Visibility="Visible"/>
 
         <ComboBox Grid.Column="2" Grid.Row="4" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" IsEditable="False"/>
@@ -76,8 +76,8 @@
             <RadioButton Name="rbIsNotRequired">No</RadioButton>
         </StackPanel>
 
-        <DatePicker Grid.Column="2" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
-        <DatePicker Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+        <DatePicker Name="dpFromTravelDate" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
+        <DatePicker Name="dpToTravelDate" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False"/>
 
         <TextBlock Name="blkUser" Grid.Column="5" Grid.Row="1" Margin="0 0 0 0" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center">  
             <Hyperlink FontStyle="Normal">
