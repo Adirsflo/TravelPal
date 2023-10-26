@@ -1,6 +1,6 @@
 ﻿namespace TravelPal.Enums
 {
-    public enum Country
+    public enum Countries
     {
         // Africa
         Algeria,

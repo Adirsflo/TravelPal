@@ -24,8 +24,4 @@
     </SplashScreen>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Manager\" />
-  </ItemGroup>
-
 </Project>

@@ -43,13 +43,13 @@
         <Label Grid.Column="2" Grid.Row="7" Content="Create Password" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="2" Grid.Row="8" Content="Confirm Password" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
 
-        <ComboBox Name="cbNewCountry" Grid.Column="3" Grid.Row="6" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
+        <ComboBox Name="cbNewCountry" Grid.Column="3" Grid.Row="6" Height="25" VerticalContentAlignment="Center" Margin="0 0 20 0"/>
 
-        <TextBox Name="txtNewUsername" Grid.Column="3" Grid.Row="3" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
-        <TextBox Name="txtNewFirstName" Grid.Column="3" Grid.Row="4" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
-        <TextBox Name="txtNewLastName" Grid.Column="3" Grid.Row="5" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
-        <PasswordBox Name="txtNewPassword" Grid.Column="3" Grid.Row="7" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
-        <PasswordBox Name="txtConfirmPassword" Grid.Column="3" Grid.Row="8" VerticalContentAlignment="Center" Margin="2 10 20 10"/>
+        <TextBox Name="txtNewUsername" Grid.Column="3" Grid.Row="3" Height="25" VerticalContentAlignment="Center" Margin="0 0 20 0"/>
+        <TextBox Name="txtNewFirstName" Grid.Column="3" Grid.Row="4" Height="25" VerticalContentAlignment="Center" Margin="0 0 20 0"/>
+        <TextBox Name="txtNewLastName" Grid.Column="3" Grid.Row="5" Height="25" VerticalContentAlignment="Center" Margin="0 0 20 0"/>
+        <PasswordBox Name="txtNewPassword" Grid.Column="3" Grid.Row="7" Height="25" VerticalContentAlignment="Center" Margin="0 0 20 0"/>
+        <PasswordBox Name="txtConfirmPassword" Grid.Column="3" Grid.Row="8" Height="25" VerticalContentAlignment="Center" Margin="0 0 20 0"/>
 
         <Button Name="btnRegister" Grid.Column="2" Grid.Row="9" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="38" Width="100" Content="Register" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnRegister_Click"/>
         <Button Name="btnCancel" Grid.Column="1" Grid.Row="10" Height="30" Width="80" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Cancel" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnCancel_Click"/>

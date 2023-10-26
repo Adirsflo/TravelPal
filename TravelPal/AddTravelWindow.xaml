@@ -38,6 +38,8 @@
 
         <Label Name="lblDetails" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Content="Add Travel" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
 
+        
+        <!--Ändra så att Meeting ändras till en inputruta--> 
         <Label Grid.Column="2" Grid.Row="2" Content="Country" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="3" Grid.Row="2" Content="From" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Grid.Column="4" Grid.Row="2" Content="To" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
@@ -51,7 +53,7 @@
         <Label Grid.Column="2" Grid.Row="8" Content="Travel Document" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
         <Label Name="lblAddQuantityOrRequired" Grid.Column="2" Grid.Row="9" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
 
-        <ListView Name="lstAddedPacklist" Grid.Column="4" Grid.Row="6" Grid.RowSpan="4" Margin="2 10 -45 5"/>
+        <ListView Name="lstAddedPacklist" Grid.Column="4" Grid.Row="6" Grid.RowSpan="4" Margin="2 10 -40 5"/>
 
         <TextBox Name="txtNewLengthOfTrip" Grid.Column="5" Grid.Row="3" Height="30" Margin="0 0 18 0" VerticalContentAlignment="Center" IsEnabled="False"/>
         <TextBox Name="txtNewCity" Grid.Column="2" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center"/>
