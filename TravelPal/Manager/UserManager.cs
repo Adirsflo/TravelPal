@@ -5,15 +5,15 @@ namespace TravelPal.Manager
 {
     public static class UserManager
     {
-        public static List<IUser> Users { get; set; }
-        public static IUser signedInUser { get; set; }
+        public static List<IUser>? Users { get; set; }
+        public static IUser? signedInUser { get; set; }
 
-        public static bool AddUser(IUser)
+        public static bool AddUser(IUser User)
         {
             bool answer = true;
             return answer;
         }
-        public static void RemoveUser(IUser)
+        public static void RemoveUser(IUser User)
         {
         }
         public static bool UpdateUsername(IUser username, IUser password)

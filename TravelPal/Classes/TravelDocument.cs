@@ -5,7 +5,7 @@
         public string Name { get; set; }
         public bool Required { get; set; }
 
-        public void Document(Name, Required) // FIX
+        public void Document(string name, bool required)
         {
 
         }

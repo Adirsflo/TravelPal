@@ -1,16 +1,19 @@
-﻿namespace TravelPal.Classes
+﻿using System;
+using System.Collections.Generic;
+using TravelPal.Enums;
+
+namespace TravelPal.Classes
 {
     public class WorkTrip : Travel
     {
         public string MeetingDetails { get; set; }
 
-        public WorkTrip(string meetingDetails)
+        public WorkTrip(string destination, Countries country, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays, string meetingDetails) : base(destination, country, travellers, packingList, startDate, endDate, travelDays)
         {
             MeetingDetails = meetingDetails;
         }
 
-        //  TODO: Fixa metoderna
-        public void Trip(MeetingDetails) // Korrekt? 
+        public void Trip(string meetingDetails)
         {
         }
 

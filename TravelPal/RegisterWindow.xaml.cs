@@ -12,22 +12,7 @@ namespace TravelPal
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             // Makes sure user ACTUALLY wants to cancel registration
-            if (txtNewUsername.Text != "" || txtNewFirstName.Text != "" || txtNewLastName.Text != "" || txtNewPassword.Password != "" || txtConfirmPassword.Password != "")
-            {
-                MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel?\n\nYour progress will not be saved!", "Warning", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
-                {
-                    MainWindow mainWindow = new();
-                    mainWindow.Show();
-                    Close();
-                }
-            }
-            else
-            {
-                MainWindow mainWindow = new();
-                mainWindow.Show();
-                Close();
-            }
+            CancelToMainWindow();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -72,6 +57,26 @@ namespace TravelPal
             MainWindow mainWindow = new();
             mainWindow.Show();
             Close();
+        }
+
+        private void CancelToMainWindow()
+        {
+            if (txtNewUsername.Text != "" || txtNewFirstName.Text != "" || txtNewLastName.Text != "" || txtNewPassword.Password != "" || txtConfirmPassword.Password != "")
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to cancel?\n\nYour progress will not be saved!", "Warning", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    MainWindow mainWindow = new();
+                    mainWindow.Show();
+                    Close();
+                }
+            }
+            else
+            {
+                MainWindow mainWindow = new();
+                mainWindow.Show();
+                Close();
+            }
         }
     }
 }

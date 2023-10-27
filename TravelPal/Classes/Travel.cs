@@ -14,10 +14,29 @@ namespace TravelPal.Classes
         public DateTime EndDate { get; set; } // Ändra i XAML
         public int TravelDays { get; set; }
 
-        // TODO: Lägg in resterande från UML diagrammet
-        // Travel({Props})
-        // {virtual} + GetInfo(): string
-        // private CalculateTravelDays(): int
+
+        public Travel(string destination, Countries country, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays)
+        {
+            Destination = destination;
+            Country = country;
+            Travellers = travellers;
+            PackingList = packingList;
+            StartDate = startDate;
+            EndDate = endDate;
+            TravelDays = travelDays;
+        }
+
+        public virtual string GetInfo()
+        {
+            return "I have not made a trip yet!";
+        }
+
+        private int CalculateTravelDays()
+        {
+            int travelDateFrom = Convert.ToInt32(StartDate);
+            int travelDateTo = Convert.ToInt32(EndDate);
+            return travelDateFrom - travelDateTo;
+        }
 
     }
 }
