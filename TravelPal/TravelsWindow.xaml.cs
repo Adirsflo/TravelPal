@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
+using TravelPal.Classes;
+using TravelPal.Manager;
 
 namespace TravelPal
 {
@@ -7,6 +10,18 @@ namespace TravelPal
         public TravelsWindow()
         {
             InitializeComponent();
+
+            UpdateUi();
+        }
+
+        public void UpdateUi()
+        {
+            // FILL IN CODE
+            IUser signedInUser = UserManager.signedInUser!;
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+
+            lblWelcomeUsername.Content = "Welcome " + textInfo.ToTitleCase(signedInUser.Username);
+            lblFullName.Content = signedInUser.FullName;
         }
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
@@ -14,6 +29,7 @@ namespace TravelPal
             MessageBoxResult result = MessageBox.Show("Are you sure you want to sign out?", "Signing out", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
+                UserManager.signedInUser = null;
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Close();
@@ -22,6 +38,8 @@ namespace TravelPal
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
+            // FILL IN CODE
+
             TravelDetailsWindow detailsWindow = new TravelDetailsWindow();
             detailsWindow.Show();
             Close();
@@ -36,6 +54,7 @@ namespace TravelPal
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
+            // FILL IN CODE
 
         }
     }

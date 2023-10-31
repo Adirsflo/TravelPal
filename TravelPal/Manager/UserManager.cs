@@ -9,8 +9,10 @@ namespace TravelPal.Manager
     {
         public static List<IUser>? UserList { get; set; } = new() // TODO: Fixa så att man kan välja alla länder i världen && Fyll i 2 resor
         {
-            new User("user", "password", Enums.Countries.SaudiArabia, "User", "Usersson", new List<Travel>
-            ())
+            //new User("user", "password", Enums.Countries.Sweden, "User", "Usersson", new List<Travel> {
+            //    new Vacation("Madrid", Countries.Spain, 2, new List<OtherItem>{"Sunscreen", 1 }, 2024-01-01, 2024-02-01),
+            //    new WorkTrip("Hong Kong", Countries.Japan, 1, new List<IPackingListItem> (new OtherItem("Jacket", 1), new TravelDocument("Passport", true)), 2024-04-01, 2024-04-20) },
+            //new Admin(),
         };
         public static IUser? signedInUser { get; set; }
 
@@ -49,11 +51,25 @@ namespace TravelPal.Manager
             }
             return true;
         }
-        public static bool SignInUser(IUser username, IUser password)
+        public static bool SignInUser(string username, string password)
         {
-            // FILL IN CODE
-            bool answer = true;
-            return answer;
+            // TODO: If nothing is filled in... "Please fill in username and password"
+            bool isSameInput = false;
+            foreach (var user in UserList)
+            {
+                if (username.ToLower() == user.Username && password == user.Password)
+                {
+                    // Signing in user if information is correct
+                    signedInUser = user;
+                    isSameInput = true;
+                }
+            }
+            if (isSameInput == false)
+            {
+                MessageBox.Show("Wrong username or password!", "Invalid login");
+            }
+
+            return isSameInput;
         }
     }
 }

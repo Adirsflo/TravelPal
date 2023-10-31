@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TravelPal.Manager;
 
 namespace TravelPal
 {
@@ -18,10 +19,29 @@ namespace TravelPal
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
+            //string username;
 
-            TravelsWindow travelsWindow = new TravelsWindow();
-            travelsWindow.Show();
-            Close();
+            //try
+            //{
+            //    username = txtUsername.Text;
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Please fill in the fields!", "Warning");
+            //}
+            //string password;
+
+            string username = txtUsername.Text;
+            string password = txtPassword.Password;
+
+            bool isSignedIn = UserManager.SignInUser(username, password);
+
+            if (isSignedIn == true)
+            {
+                TravelsWindow travelsWindow = new TravelsWindow();
+                travelsWindow.Show();
+                Close();
+            }
         }
     }
 }

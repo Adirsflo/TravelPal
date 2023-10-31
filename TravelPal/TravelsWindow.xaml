@@ -33,11 +33,20 @@
         <Image Grid.Column="4" Grid.Row="1" Grid.RowSpan="4" Margin="0 10 0 -10" Source="Image/TravelPalLogo.png" Stretch="UniformToFill"/>
         <Border Grid.Column="4" Grid.Row="1" Margin="-10 0 0 0" Background="#D0D2F6" CornerRadius="5"/>
 
-        <Label Name="lblWelcomeUsername" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="Welcome Alexander123" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
+        <Label Name="lblWelcomeUsername" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="*Welcome Username*" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
         <Label Name="lblFullName" Grid.Column="1" Grid.Row="2" Content="*FullName*" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
-        <Label Name="lblAddedTravels" Grid.Column="1" Grid.Row="3" Content="*Added Travels*" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Name="lblAddedTravels" Grid.Column="1" Grid.Row="3" Content="Added Travels" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
 
-        <ListView Grid.Column="1" Grid.Row="4" Grid.RowSpan="6" Grid.ColumnSpan="3"/>
+        <ListView Grid.Column="1" Grid.Row="4" Grid.RowSpan="6" Grid.ColumnSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="Trip" DisplayMemberBinding="{Binding Trip}"/>
+                    <GridViewColumn Width="100" Header="Period" DisplayMemberBinding="{Binding Period}"/>
+                    <GridViewColumn Width="100" Header="TravelPals" DisplayMemberBinding="{Binding TravelPals}"/>
+                    <GridViewColumn Width="100" Header="TravelType" DisplayMemberBinding="{Binding TravelType}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <TextBlock Name="blkUser" Grid.Column="4" Grid.Row="1" Margin="0 0 0 0" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center">  
             <Hyperlink FontStyle="Normal">

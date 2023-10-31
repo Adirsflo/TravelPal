@@ -77,8 +77,8 @@
             <RadioButton Name="rbIsNotNewRequired">No</RadioButton>
         </StackPanel>
 
-        <DatePicker Name="dpAddFromTravelDate" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <DatePicker Name="dpAddToTravelDate" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <DatePicker Name="dpAddFromTravelDate" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding StartDate}" SelectedDateChanged="dpAddFromTravelDate_SelectedDateChanged"/>
+        <DatePicker Name="dpAddToTravelDate" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding EndDate}" SelectedDateChanged="dpAddToTravelDate_SelectedDateChanged"/>
 
         <TextBlock Name="blkUser" Grid.Column="6" Grid.Row="1" Margin="0 0 0 0" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center">  
             <Hyperlink FontStyle="Normal">

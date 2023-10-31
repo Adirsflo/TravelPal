@@ -23,16 +23,17 @@ namespace TravelPal.Classes
             PackingList = packingList;
             StartDate = startDate;
             EndDate = endDate;
-            TravelDays = travelDays;
         }
 
         public virtual string GetInfo()
         {
+            // FILL IN CODE
             return "I have not made a trip yet!";
         }
 
         private int CalculateTravelDays()
         {
+            // FILL IN CODE??
             int travelDateFrom = Convert.ToInt32(StartDate);
             int travelDateTo = Convert.ToInt32(EndDate);
             return travelDateFrom - travelDateTo;

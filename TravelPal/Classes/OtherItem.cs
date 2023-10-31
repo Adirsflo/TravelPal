@@ -5,6 +5,12 @@
         public string Name { get; set; }
         public int Quantity { get; set; }
 
+        public OtherItem(string name, int quantity)
+        {
+            Name = name;
+            Quantity = quantity;
+        }
+
         public void _OtherItem(string name, int quantity)
         {
 
