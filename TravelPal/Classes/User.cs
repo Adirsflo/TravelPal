@@ -14,14 +14,13 @@ namespace TravelPal.Classes
         public string FullName { get { return FirstName + " " + LastName; } }
         public Countries Location { get; set; }
 
-        public User(string username, string password, Countries location, string firstName, string lastName, List<Travel> travels)
+        public User(string username, string password, Countries location, string firstName, string lastName)
         {
             Username = username;
             Password = password;
             Location = location;
             FirstName = firstName;
             LastName = lastName;
-            Travels = travels;
         }
     }
 }

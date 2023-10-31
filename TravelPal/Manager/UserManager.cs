@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using TravelPal.Classes;
 using TravelPal.Enums;
@@ -9,10 +10,15 @@ namespace TravelPal.Manager
     {
         public static List<IUser>? UserList { get; set; } = new() // TODO: Fixa så att man kan välja alla länder i världen && Fyll i 2 resor
         {
-            //new User("user", "password", Enums.Countries.Sweden, "User", "Usersson", new List<Travel> {
-            //    new Vacation("Madrid", Countries.Spain, 2, new List<OtherItem>{"Sunscreen", 1 }, 2024-01-01, 2024-02-01),
-            //    new WorkTrip("Hong Kong", Countries.Japan, 1, new List<IPackingListItem> (new OtherItem("Jacket", 1), new TravelDocument("Passport", true)), 2024-04-01, 2024-04-20) },
-            //new Admin(),
+            new Admin(),
+            new User("user", "password", Enums.Countries.Sweden, "User", "Usersson")
+            {
+                Travels = new List<Travel>()
+                {
+                    new Vacation("Madrid", Countries.Spain, 2, new List<IPackingListItem> {new OtherItem("Sunscreen", 2), new OtherItem("Ball", 2)}, new DateTime(2024, 10, 02), new DateTime(2024, 11, 01), 30, true),
+                    new WorkTrip("Hongkong", Countries.China, 1, new List<IPackingListItem> {new OtherItem("Jacket", 1), new TravelDocument("Passport", true)}, new DateTime(2024, 04, 01), new DateTime(2024, 04, 20), 19, "Bussines meeting for developing new strategy")
+                }
+            },
         };
         public static IUser? signedInUser { get; set; }
 
@@ -23,7 +29,7 @@ namespace TravelPal.Manager
             if (isValidated)
             {
                 // Add user to userList
-                UserList.Add(new User(username, newPassword, country, firstName, lastName, null));
+                UserList.Add(new User(username, newPassword, country, firstName, lastName));
                 return true;
             }
             return isValidated;

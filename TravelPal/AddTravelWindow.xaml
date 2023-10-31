@@ -58,23 +58,24 @@
         <TextBox Name="txtNewLengthOfTrip" Grid.Column="5" Grid.Row="3" Height="30" Margin="0 0 18 0" VerticalContentAlignment="Center" IsEnabled="False"/>
         <TextBox Name="txtNewCity" Grid.Column="2" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center"/>
         <TextBox Name="txtNewAmmountTravelers" Grid.Column="3" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" />
+        <TextBox Name="txtNewMeetingDetails" Grid.Column="5" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" Visibility="Hidden"/>
         <TextBox Name="txtAddItem" Grid.Column="3" Grid.Row="7" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center"/>
         <TextBox Name="txtAddQuantity" Grid.Column="3" Grid.Row="9" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" Visibility="Visible"/>
 
-        <ComboBox Name="cbNewCountry" Grid.Column="2" Grid.Row="3" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center"/>
-        <ComboBox Name="cbNewTypeTrip" Grid.Column="4" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center"/>
+        <ComboBox Name="cbNewCountry" Grid.Column="2" Grid.Row="3" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" SelectionChanged="cbNewCountry_SelectionChanged"/>
+        <ComboBox Name="cbNewTypeTrip" Grid.Column="4" Grid.Row="5" Height="30" Margin="0 0 5 0" VerticalContentAlignment="Center" SelectionChanged="cbNewTypeTrip_SelectionChanged"/>
 
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden">
-            <RadioButton Name="rbYesAddTypeOfTrip">Yes</RadioButton>
-            <RadioButton Name="rbNoAddTypeOfTrip">No</RadioButton>
+        <StackPanel Name="rbIsAllInclusive" Orientation="Horizontal" Margin="5" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Hidden">
+            <RadioButton Name="rbAllInclusiveTrue">Yes</RadioButton>
+            <RadioButton Name="rbAllInclusiveFalse">No</RadioButton>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Column="3" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <RadioButton Name="rbYesNewTravelDocument">Yes</RadioButton>
-            <RadioButton Name="rbNoNewTravelDocument">No</RadioButton>
+        <StackPanel Name="rbIsTravelDocument" Orientation="Horizontal" Margin="5" Grid.Column="3" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <RadioButton Name="rbTravelDocumentTrue" Checked="rbTravelDocumentTrue_Checked">Yes</RadioButton>
+            <RadioButton Name="rbTravelDocumentFalse" Checked="rbTravelDocumentFalse_Checked">No</RadioButton>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Column="3" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Visibility="Hidden">
-            <RadioButton Name="rbIsNewRequired">Yes</RadioButton>
-            <RadioButton Name="rbIsNotNewRequired">No</RadioButton>
+        <StackPanel Name="rbIsRequired" Orientation="Horizontal" Margin="5" Grid.Column="3" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Visibility="Hidden">
+            <RadioButton Name="rbRequiredTrue" >Yes</RadioButton>
+            <RadioButton Name="rbRequiredFalse" >No</RadioButton>
         </StackPanel>
 
         <DatePicker Name="dpAddFromTravelDate" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding StartDate}" SelectedDateChanged="dpAddFromTravelDate_SelectedDateChanged"/>
