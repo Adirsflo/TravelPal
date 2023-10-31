@@ -9,13 +9,19 @@ namespace TravelPal.Classes
 
         public string Username { get; set; }
         public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
         public Countries Location { get; set; }
 
-        public User(string username, string password, Countries location)
+        public User(string username, string password, Countries location, string firstName, string lastName, List<Travel> travels)
         {
             Username = username;
             Password = password;
             Location = location;
+            FirstName = firstName;
+            LastName = lastName;
+            Travels = travels;
         }
     }
 }

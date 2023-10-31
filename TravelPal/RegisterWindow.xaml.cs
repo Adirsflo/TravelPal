@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Windows;
+using TravelPal.Enums;
+using TravelPal.Manager;
 
 namespace TravelPal
 {
@@ -7,6 +11,11 @@ namespace TravelPal
         public RegisterWindow()
         {
             InitializeComponent();
+
+            foreach (var country in Enum.GetValues(typeof(Countries)))
+            {
+                cbNewCountry.Items.Add(country);
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -19,23 +28,57 @@ namespace TravelPal
         {
             // Gather variables
             string username = txtNewUsername.Text.ToLower();
-            string firstName = txtNewFirstName.Text;
-            string lastName = txtNewLastName.Text;
-            string country = cbNewCountry.Text;
+            Countries country = (Countries)cbNewCountry.SelectedIndex;
             string newPassword = txtNewPassword.Password;
             string confirmPassword = txtConfirmPassword.Password;
+            // Capitalizing the first letter of each name
+            string firstName = CapitalizeFirstLetter(txtNewFirstName.Text.ToLower());
+            string lastName = CapitalizeFirstLetter(txtNewLastName.Text.ToLower());
 
-            // Make sure that the Username is not taken
-            // If username is taken... "Username is already taken"
+            // Make sure that the password is matching
+            if (newPassword != confirmPassword)
+            {
+                // If password is not matching... "The password doesn't match!"
+                MessageBox.Show("The password doesn't match!", "Warning");
+            }
+
+            // Make sure that the user select country
+            else if (cbNewCountry.SelectedIndex == -1)
+            {
+                // If nothing is selected, send a warning
+                MessageBox.Show("Please choose a country!", "Warning");
+            }
+            else
+            {
+                // Make sure that the Username is not taken
+                bool isAddedUser = UserManager.AddUser(username, firstName, lastName, country, newPassword);
+
+                if (isAddedUser)
+                {
+                    // Message when new account is registered
+                    MessageBox.Show("New user registered! Welcome!", "New account");
+                    MainWindow mainWindow = new();
+                    mainWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    // If username is taken, throw error
+                }
+            }
+
+
+
+
+
+
+            //bool usernameAvailable = UserManager.ValidateUsername(username);
 
 
             // Make sure that no numbers is typed in FirstName and LastName
             // If Names has numbers... "Names can't involve numbers"
 
             // Format the FirstName and LastName to first letter to capital letter
-
-            // Make sure that the password is matching
-            // If password is not matching... "The password doesn't match!"
 
 
 
@@ -50,13 +93,6 @@ namespace TravelPal
 
             UserManager.userList.Add(new Customer(username, newPassword, firstName, lastName, age));
             */
-
-
-            // Message when new account is registered
-            MessageBox.Show("New user registered! Welcome!", "New account");
-            MainWindow mainWindow = new();
-            mainWindow.Show();
-            Close();
         }
 
         private void CancelToMainWindow()
@@ -77,6 +113,12 @@ namespace TravelPal
                 mainWindow.Show();
                 Close();
             }
+        }
+
+        private string CapitalizeFirstLetter(string name)
+        {
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(name);
         }
     }
 }
