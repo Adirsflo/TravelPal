@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using TravelPal.Classes;
@@ -9,7 +11,10 @@ namespace TravelPal
 {
     public partial class AddTravelWindow : Window
     {
+        public List<IPackingListItem> TemporarilyPackingList { get; set; } = new();
+
         IUser signedInUser = UserManager.signedInUser;
+
         public AddTravelWindow()
         {
             InitializeComponent();
@@ -17,7 +22,7 @@ namespace TravelPal
             UpdateUi();
         }
 
-        private void UpdateUi()
+        private void UpdateUi() // Uppdates UI
         {
             cbNewCountry.Items.Add("--Country--");
             foreach (var country in Enum.GetValues(typeof(Countries)))
@@ -36,8 +41,16 @@ namespace TravelPal
             cbNewTypeTrip.Items.Add("Vacation");
             cbNewTypeTrip.Items.Add("Work Trip");
             cbNewTypeTrip.SelectedIndex = 0;
+
+            ClearPackinglistInput();
         }
-        private void CalculateAndDisplayDifference()
+        private void ClearPackinglistInput() // Clears input fields for Packinglist
+        {
+            txtAddItem.Text = string.Empty;
+            txtAddQuantity.Text = string.Empty;
+            rbTravelDocumentFalse.IsChecked = true;
+        }
+        private void CalculateAndDisplayDifference() // Calculates and displays the durration of trip
         {
             // Refreshes the total days
             if (dpAddToTravelDate.SelectedDate != null && dpAddFromTravelDate.SelectedDate != null)
@@ -54,11 +67,11 @@ namespace TravelPal
             }
         }
 
-        private void dpAddToTravelDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void dpAddToTravelDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) // Uppdates the durration of trip
         {
             CalculateAndDisplayDifference();
         }
-        private void dpAddFromTravelDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void dpAddFromTravelDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) // Uppdates the durration of trip
         {
             CalculateAndDisplayDifference();
         }
@@ -70,7 +83,7 @@ namespace TravelPal
             Close();
         }
 
-        private void cbNewTypeTrip_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbNewTypeTrip_SelectionChanged(object sender, SelectionChangedEventArgs e) // Views the right TextBoxes for the right trip type
         {
             if (cbNewTypeTrip.SelectedIndex == 1)
             {
@@ -96,53 +109,142 @@ namespace TravelPal
             }
         }
 
-        private void rbTravelDocumentTrue_Checked(object sender, RoutedEventArgs e)
+        private void rbTravelDocumentTrue_Checked(object sender, RoutedEventArgs e) // If checked Yes... displays if the traveldocument is required
         {
             rbIsRequired.Visibility = Visibility.Visible;
             txtAddQuantity.Visibility = Visibility.Hidden;
             lblAddQuantityOrRequired.Content = "Required?";
         }
 
-        private void rbTravelDocumentFalse_Checked(object sender, RoutedEventArgs e)
+        private void rbTravelDocumentFalse_Checked(object sender, RoutedEventArgs e) // If checked No... display TextBox for input of quantity of item
         {
             rbIsRequired.Visibility = Visibility.Hidden;
             txtAddQuantity.Visibility = Visibility.Visible;
             lblAddQuantityOrRequired.Content = "Quantity";
         }
 
-        private void cbNewCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbNewCountry_SelectionChanged(object sender, SelectionChangedEventArgs e) // To make sure that TravelDocument is required or not
         {
-
-            // Kolla om User är från Europe
-            // Om den är det...
-            // Kolla om den ska till ett land inom Europe
-
             string userLocation = signedInUser.Location.ToString();
-
-            //string destinationLocation = ((Countries)cbNewCountry.SelectedItem - 1).ToString();
-
-            //if (userLocation == destinationLocation || )
-            //{
-
-            //}
+            string destinationLocation = ((Countries)cbNewCountry.SelectedIndex - 1).ToString();
 
             // Travel Documents is not required
-            if (signedInUser.Location == (Countries)cbNewCountry.SelectedIndex - 1 || (Enum.IsDefined(typeof(EuropeanCountry), cbNewCountry.SelectedItem) && Enum.IsDefined(typeof(EuropeanCountry), signedInUser.Location)))
+            if (userLocation == destinationLocation || (Enum.GetNames(typeof(EuropeanCountry)).Contains(userLocation)) & Enum.GetNames(typeof(EuropeanCountry)).Contains(destinationLocation))
             {
-                // NO REQUIRED
-                // Ifall det landet som personen reser till är från samma land
-                // Ifall landet befinner sig i Europa, och reser från europa
-                MessageBox.Show("This Works");
+                // If we have same location as our destination OR if we live within EU and will travel within EU
                 rbRequiredFalse.IsChecked = true;
-                break;
-                // REQUIRED
-                // Ifall landet inte reser inom Europa
-                // Ifall landet inte är samma som personen kommer från
             }
             // Travel Documents is required
-            if ((EuropeanCountry)signedInUser.Location != (EuropeanCountry)cbNewCountry.SelectedIndex || signedInUser.Location != (Countries)cbNewCountry.SelectedIndex)
+            else
             {
                 rbRequiredTrue.IsChecked = true;
+            }
+        }
+
+        private void btnAddPacklist_Click(object sender, RoutedEventArgs e) // Adds item to PackingList
+        {
+            // Gather inputs
+            ListViewItem item = new();
+            string packingItem = txtAddItem.Text;
+
+            if (String.IsNullOrEmpty(packingItem))
+            {
+                MessageBox.Show("Please enter the name of the item!", "Packinglist Warning");
+            }
+            else if (rbTravelDocumentTrue.IsChecked == true)
+            {
+                if (rbRequiredTrue.IsChecked == true)
+                {
+                    bool isRequired = true;
+
+                    IPackingListItem packingListItem = (IPackingListItem)signedInUser;
+                    TravelDocument documentItem = (TravelDocument)packingListItem;
+                    documentItem.Name = packingItem;
+                    documentItem.Required = isRequired;
+
+                    item.Content = $"Document: {packingItem} - Required: Yes";
+                    item.Tag = documentItem;
+
+                    MessageBox.Show("New travel document added!", "Travel document added");
+                    lstAddedPacklist.Items.Add(item);
+
+                    ClearPackinglistInput();
+                }
+                else
+                {
+                    bool isRequired = false;
+
+                    IPackingListItem packingListItem = (IPackingListItem)signedInUser;
+                    TravelDocument documentItem = (TravelDocument)packingListItem;
+                    documentItem.Name = packingItem;
+                    documentItem.Required = isRequired;
+
+                    item.Content = $"Document: {packingItem} - Required: No";
+                    item.Tag = documentItem;
+
+                    MessageBox.Show("New travel document added!", "Travel document added");
+                    lstAddedPacklist.Items.Add(item);
+                    ClearPackinglistInput();
+                }
+            }
+            else if (rbTravelDocumentFalse.IsChecked == true)
+            {
+                if (String.IsNullOrEmpty(txtAddQuantity.Text))
+                {
+                    MessageBox.Show("Please enter quantity of items!", "Packinglist Warning");
+                }
+                else
+                {
+                    int packingQuantity = 0;
+                    try
+                    {
+                        packingQuantity = Convert.ToInt16(txtAddQuantity.Text);
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show("Please enter whole numbers in quantity!", "Packinglist Warning");
+                    }
+
+                    if (int.TryParse(txtAddQuantity.Text, out int value))
+                    {
+                        // Lägg till i PackingListItem
+
+                        IPackingListItem packingListItem = (IPackingListItem)signedInUser;
+                        OtherItem otherItem = (OtherItem)packingListItem;
+                        otherItem.Name = packingItem;
+                        otherItem.Quantity = packingQuantity;
+
+
+                        item.Content = $"Item: {packingItem} - Quantity: {packingQuantity}";
+                        item.Tag = otherItem;
+
+                        MessageBox.Show("New packing item added!", "Packing item added");
+                        lstAddedPacklist.Items.Add(item);
+                        ClearPackinglistInput();
+                    }
+                }
+            }
+        }
+
+        private void btnRemovePacklist_Click(object sender, RoutedEventArgs e) // Removes item from PackingList
+        {
+            ListViewItem selectedItem = (ListViewItem)lstAddedPacklist.SelectedItem;
+
+            if (selectedItem != null)
+            {
+                MessageBoxResult result = MessageBox.Show($"Are you sure you want to remove {((IPackingListItem)selectedItem.Tag).Name} from your packinglist?", "Packinglist Warning", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Ta bort Item från listan
+
+
+                    // Bekräfta för användaren att den numera är bortagen
+                    MessageBox.Show($"{selectedItem} removed!", "Item removed");
+                    lstAddedPacklist.Items.Remove(selectedItem);
+
+
+                }
             }
 
         }

@@ -105,8 +105,8 @@
         </TextBlock>
 
         <Button Name="btnBack" Grid.Column="6" Grid.Row="1" Height="25" Width="60" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Back" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnBack_Click"/>
-        <Button Name="btnAddPacklist" Grid.Column="5" Grid.Row="6" Height="30" Width="60" Margin="0 10 10 0" HorizontalAlignment="Right" Content="Add" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
-        <Button Name="btnRemovePacklist" Grid.Column="5" Grid.Row="7" Height="30" Width="60" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Remove" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
+        <Button Name="btnAddPacklist" Grid.Column="5" Grid.Row="6" Height="30" Width="60" Margin="0 10 10 0" HorizontalAlignment="Right" Content="Add" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnAddPacklist_Click"/>
+        <Button Name="btnRemovePacklist" Grid.Column="5" Grid.Row="7" Height="30" Width="60" Margin="0 0 10 0" HorizontalAlignment="Right" Content="Remove" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE" Click="btnRemovePacklist_Click"/>
 
         <Button Name="btnAddTrip" Grid.Column="6" Grid.Row="9" Height="30" Width="80" Margin="5 0 0 0" HorizontalAlignment="Left" Content="Add Travel" FontFamily="Arial" BorderBrush="#7B68EE" Background="#E3E8F8" Foreground="#7B68EE"/>
 

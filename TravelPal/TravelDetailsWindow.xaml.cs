@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace TravelPal
 {
@@ -7,9 +8,16 @@ namespace TravelPal
     /// </summary>
     public partial class TravelDetailsWindow : Window
     {
-        public TravelDetailsWindow()
+        public TravelDetailsWindow(ListViewItem item)
         {
             InitializeComponent();
+            UpdateUi(item);
+
+        }
+
+        private void UpdateUi(ListViewItem item)
+        {
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

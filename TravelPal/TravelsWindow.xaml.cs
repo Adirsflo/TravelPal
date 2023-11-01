@@ -40,11 +40,6 @@ namespace TravelPal
                 item.Tag = travel;
 
                 lstMyTravels.Items.Add(item);
-
-                //lstMyTravels.Items.Add(item); //
-                //ERROR System.InvalidOperationException: 'Element already has a logical parent.
-                //It must be detached from the old parent before it is attached to a new one.'
-
             }
         }
 
@@ -63,8 +58,10 @@ namespace TravelPal
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
             // FILL IN CODE
+            ListViewItem item = (ListViewItem)lstMyTravels.SelectedItem;
 
-            TravelDetailsWindow detailsWindow = new TravelDetailsWindow();
+
+            TravelDetailsWindow detailsWindow = new TravelDetailsWindow(item);
             detailsWindow.Show();
             Close();
         }

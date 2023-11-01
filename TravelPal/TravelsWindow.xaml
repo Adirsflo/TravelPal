@@ -40,9 +40,9 @@
         <ListView Name="lstMyTravels" Grid.Column="1" Grid.Row="4" Grid.RowSpan="6" Grid.ColumnSpan="3">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" Header="Trip" DisplayMemberBinding="{Binding Trip}"/>
-                    <GridViewColumn Width="100" Header="Period" DisplayMemberBinding="{Binding Period}"/>
-                    <GridViewColumn Width="100" Header="TravelPals" DisplayMemberBinding="{Binding TravelPals}"/>
+                    <GridViewColumn Width="150" Header="Trip" DisplayMemberBinding="{Binding Trip}"/>
+                    <GridViewColumn Width="150" Header="Period" DisplayMemberBinding="{Binding Period}"/>
+                    <GridViewColumn Width="150" Header="TravelPals" DisplayMemberBinding="{Binding TravelPals}"/>
                     <!--<GridViewColumn Width="100" Header="TravelType" DisplayMemberBinding="{Binding TravelType}"/>-->
                 </GridView>
             </ListView.View>
