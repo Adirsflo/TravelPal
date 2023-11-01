@@ -85,7 +85,7 @@ namespace TravelPal
 
         private void cbNewTypeTrip_SelectionChanged(object sender, SelectionChangedEventArgs e) // Views the right TextBoxes for the right trip type
         {
-            if (cbNewTypeTrip.SelectedIndex == 1)
+            if (cbNewTypeTrip.SelectedIndex == 1) // Vacation
             {
                 txtNewMeetingDetails.Text = "";
                 lblNewPurposeOfTrip.Visibility = Visibility.Visible;
@@ -93,7 +93,7 @@ namespace TravelPal
                 rbIsAllInclusive.Visibility = Visibility.Visible;
                 txtNewMeetingDetails.Visibility = Visibility.Hidden;
             }
-            else if (cbNewTypeTrip.SelectedIndex == 2)
+            else if (cbNewTypeTrip.SelectedIndex == 2) // Work Trip
             {
                 lblNewPurposeOfTrip.Content = "Meeting Details";
                 lblNewPurposeOfTrip.Visibility = Visibility.Visible;
@@ -153,39 +153,23 @@ namespace TravelPal
             }
             else if (rbTravelDocumentTrue.IsChecked == true)
             {
+                bool isRequired = false;
+
                 if (rbRequiredTrue.IsChecked == true)
                 {
-                    bool isRequired = true;
-
-                    IPackingListItem packingListItem = (IPackingListItem)signedInUser;
-                    TravelDocument documentItem = (TravelDocument)packingListItem;
-                    documentItem.Name = packingItem;
-                    documentItem.Required = isRequired;
-
-                    item.Content = $"Document: {packingItem} - Required: Yes";
-                    item.Tag = documentItem;
-
-                    MessageBox.Show("New travel document added!", "Travel document added");
-                    lstAddedPacklist.Items.Add(item);
-
-                    ClearPackinglistInput();
+                    isRequired = true;
                 }
-                else
-                {
-                    bool isRequired = false;
 
-                    IPackingListItem packingListItem = (IPackingListItem)signedInUser;
-                    TravelDocument documentItem = (TravelDocument)packingListItem;
-                    documentItem.Name = packingItem;
-                    documentItem.Required = isRequired;
+                TravelDocument newTravelDocument = new(packingItem, isRequired);
 
-                    item.Content = $"Document: {packingItem} - Required: No";
-                    item.Tag = documentItem;
 
-                    MessageBox.Show("New travel document added!", "Travel document added");
-                    lstAddedPacklist.Items.Add(item);
-                    ClearPackinglistInput();
-                }
+                item.Content = $"Document: {newTravelDocument.Name} - Required: {(newTravelDocument.Required ? "Yes" : "No")}";
+                item.Tag = newTravelDocument;
+
+                MessageBox.Show("New travel document added!", "Travel document added");
+                lstAddedPacklist.Items.Add(item);
+
+                ClearPackinglistInput();
             }
             else if (rbTravelDocumentFalse.IsChecked == true)
             {
@@ -196,6 +180,7 @@ namespace TravelPal
                 else
                 {
                     int packingQuantity = 0;
+
                     try
                     {
                         packingQuantity = Convert.ToInt16(txtAddQuantity.Text);
@@ -203,25 +188,19 @@ namespace TravelPal
                     catch (FormatException)
                     {
                         MessageBox.Show("Please enter whole numbers in quantity!", "Packinglist Warning");
+                        return;
                     }
 
-                    if (int.TryParse(txtAddQuantity.Text, out int value))
-                    {
-                        // Lägg till i PackingListItem
+                    // Lägg till i PackingListItem
 
-                        IPackingListItem packingListItem = (IPackingListItem)signedInUser;
-                        OtherItem otherItem = (OtherItem)packingListItem;
-                        otherItem.Name = packingItem;
-                        otherItem.Quantity = packingQuantity;
+                    OtherItem otherItem = new(packingItem, packingQuantity);
 
+                    item.Content = $"Item: {packingItem} - Quantity: {packingQuantity}";
+                    item.Tag = otherItem;
 
-                        item.Content = $"Item: {packingItem} - Quantity: {packingQuantity}";
-                        item.Tag = otherItem;
-
-                        MessageBox.Show("New packing item added!", "Packing item added");
-                        lstAddedPacklist.Items.Add(item);
-                        ClearPackinglistInput();
-                    }
+                    MessageBox.Show("New packing item added!", "Packing item added");
+                    lstAddedPacklist.Items.Add(item);
+                    ClearPackinglistInput();
                 }
             }
         }
@@ -236,17 +215,109 @@ namespace TravelPal
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    // Ta bort Item från listan
-
-
                     // Bekräfta för användaren att den numera är bortagen
-                    MessageBox.Show($"{selectedItem} removed!", "Item removed");
+                    MessageBox.Show($"{((IPackingListItem)selectedItem.Tag).Name} removed!", "Item removed");
+
                     lstAddedPacklist.Items.Remove(selectedItem);
-
-
                 }
             }
 
+        }
+        private void btnAddTrip_Click(object sender, RoutedEventArgs e) // Adds trip to users Travels-list
+        {
+            // Gather all inputs
+
+            if (cbNewCountry.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please choose a country to visit!", "Warning");
+                return;
+            }
+
+            Countries newCountry = (Countries)cbNewCountry.SelectedItem;
+            string newCity = txtNewCity.Text;
+            DateTime startDate;
+            DateTime endDate;
+            int daysDifference;
+            int newAmountTravelers;
+            bool isAllInclusive;
+            string newMeetingDetails;
+
+
+            try
+            {
+                startDate = dpAddFromTravelDate.SelectedDate.Value;
+                endDate = dpAddToTravelDate.SelectedDate.Value;
+                daysDifference = (int)(endDate - startDate).TotalDays;
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Please enter traveling dates!", "Warning");
+                return;
+            }
+
+
+            if (String.IsNullOrEmpty(newCity))
+            {
+                MessageBox.Show("Please enter a city to visit!", "Warning");
+                return;
+            }
+
+            try
+            {
+                newAmountTravelers = Convert.ToInt32(txtNewAmmountTravelers.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Please enter whole numbers in TravelPals!", "Warning");
+                return;
+            }
+
+            if (cbNewTypeTrip.SelectedIndex == 1) // Vacation
+            {
+                if (rbAllInclusiveTrue.IsChecked == true)
+                {
+                    isAllInclusive = true;
+                }
+                else if (rbAllInclusiveFalse.IsChecked == true)
+                {
+                    isAllInclusive = false;
+                }
+                else
+                {
+                    MessageBox.Show("Please choose if it's all inclusive!", "Warning");
+                    return;
+                }
+
+                Vacation userTrip = new(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, daysDifference, isAllInclusive);
+                // Lägg till den nya resan till vår användares lista
+                ((User)UserManager.signedInUser).Travels.Add(userTrip);
+                MessageBox.Show("New trip added! Returning to menu!", "Trip added");
+                TravelsWindow travelsWindow = new();
+                travelsWindow.Show();
+                Close();
+            }
+            else if (cbNewTypeTrip.SelectedIndex == 2) // Work Trip
+            {
+                newMeetingDetails = txtNewMeetingDetails.Text;
+
+                if (String.IsNullOrEmpty(newMeetingDetails))
+                {
+                    MessageBox.Show("Please enter meeting details!", "Warning");
+                    return;
+                }
+
+                WorkTrip userTrip = new WorkTrip(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, daysDifference, newMeetingDetails);
+                // Lägg till den nya resan till vår användares lista
+                ((User)UserManager.signedInUser).Travels.Add(userTrip);
+                MessageBox.Show("New trip added! Returning to menu!", "Trip added");
+                TravelsWindow travelsWindow = new();
+                travelsWindow.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Please choose the type of trip!", "Warning");
+            }
         }
     }
 }
