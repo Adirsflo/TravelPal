@@ -15,7 +15,7 @@ namespace TravelPal.Classes
         public int TravelDays { get; set; }
 
 
-        public Travel(string destination, Countries country, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate, int travelDays)
+        public Travel(string destination, Countries country, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate)
         {
             Destination = destination;
             Country = country;

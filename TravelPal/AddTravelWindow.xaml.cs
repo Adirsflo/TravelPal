@@ -28,7 +28,7 @@ namespace TravelPal
 
             // User can only pick from todays date
             dpAddFromTravelDate.DisplayDateStart = DateTime.Now;
-            dpAddToTravelDate.DisplayDateStart = DateTime.Now;
+            dpAddToTravelDate.DisplayDateStart = DateTime.Now; // TODO: Kan inte vara innan "From" datumet
 
             CalculateAndDisplayDifference();
 
@@ -112,27 +112,39 @@ namespace TravelPal
 
         private void cbNewCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (var country in Enum.GetValues(typeof(EuropeanCountry)))
+
+            // Kolla om User är från Europe
+            // Om den är det...
+            // Kolla om den ska till ett land inom Europe
+
+            string userLocation = signedInUser.Location.ToString();
+
+            //string destinationLocation = ((Countries)cbNewCountry.SelectedItem - 1).ToString();
+
+            //if (userLocation == destinationLocation || )
+            //{
+
+            //}
+
+            // Travel Documents is not required
+            if (signedInUser.Location == (Countries)cbNewCountry.SelectedIndex - 1 || (Enum.IsDefined(typeof(EuropeanCountry), cbNewCountry.SelectedItem) && Enum.IsDefined(typeof(EuropeanCountry), signedInUser.Location)))
             {
-                // Travel Documents is not required
-                if ((EuropeanCountry)signedInUser.Location == (EuropeanCountry)cbNewCountry.SelectedIndex || signedInUser.Location == (Countries)cbNewCountry.SelectedIndex)
-                {
-                    // NO REQUIRED
-                    // Ifall det landet som personen reser till är från samma land
-                    // Ifall landet befinner sig i Europa, och reser från europa
-                    MessageBox.Show("This Works");
-                    rbRequiredFalse.IsChecked = true;
-                    break;
-                    // REQUIRED
-                    // Ifall landet inte reser inom Europa
-                    // Ifall landet inte är samma som personen kommer från
-                }
-                // Travel Documents is required
-                if ((EuropeanCountry)signedInUser.Location != (EuropeanCountry)cbNewCountry.SelectedIndex || signedInUser.Location != (Countries)cbNewCountry.SelectedIndex)
-                {
-                    rbRequiredTrue.IsChecked = true;
-                }
+                // NO REQUIRED
+                // Ifall det landet som personen reser till är från samma land
+                // Ifall landet befinner sig i Europa, och reser från europa
+                MessageBox.Show("This Works");
+                rbRequiredFalse.IsChecked = true;
+                break;
+                // REQUIRED
+                // Ifall landet inte reser inom Europa
+                // Ifall landet inte är samma som personen kommer från
             }
+            // Travel Documents is required
+            if ((EuropeanCountry)signedInUser.Location != (EuropeanCountry)cbNewCountry.SelectedIndex || signedInUser.Location != (Countries)cbNewCountry.SelectedIndex)
+            {
+                rbRequiredTrue.IsChecked = true;
+            }
+
         }
     }
 }

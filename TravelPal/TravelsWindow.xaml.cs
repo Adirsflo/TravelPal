@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using TravelPal.Classes;
 using TravelPal.Manager;
 
@@ -18,10 +19,33 @@ namespace TravelPal
         {
             // FILL IN CODE
             IUser signedInUser = UserManager.signedInUser!;
+            User user = (User)signedInUser;
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
             lblWelcomeUsername.Content = "Welcome " + textInfo.ToTitleCase(signedInUser.Username);
             lblFullName.Content = signedInUser.FullName;
+
+            lstMyTravels.Items.Clear();
+
+            foreach (var travel in user.Travels)
+            {
+                ListViewItem item = new();
+
+                item.Content = new
+                {
+                    Trip = travel.Destination,
+                    Period = travel.StartDate.ToString("yyyy-MM-dd") + " - " + travel.EndDate.ToString("yyyy-MM-dd"),
+                    TravelPals = travel.Travellers,
+                };
+                item.Tag = travel;
+
+                lstMyTravels.Items.Add(item);
+
+                //lstMyTravels.Items.Add(item); //
+                //ERROR System.InvalidOperationException: 'Element already has a logical parent.
+                //It must be detached from the old parent before it is attached to a new one.'
+
+            }
         }
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)

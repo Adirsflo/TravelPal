@@ -35,15 +35,15 @@
 
         <Label Name="lblWelcomeUsername" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Content="*Welcome Username*" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
         <Label Name="lblFullName" Grid.Column="1" Grid.Row="2" Content="*FullName*" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" FontFamily="Arial" FontWeight="Heavy" Foreground="#7B68EE"/>
-        <Label Name="lblAddedTravels" Grid.Column="1" Grid.Row="3" Content="Added Travels" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
+        <Label Name="lblMyTravels" Grid.Column="1" Grid.Row="3" Content="My Travels" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="13" FontFamily="Arial" FontWeight="DemiBold" Foreground="#7B68EE"/>
 
-        <ListView Grid.Column="1" Grid.Row="4" Grid.RowSpan="6" Grid.ColumnSpan="3">
+        <ListView Name="lstMyTravels" Grid.Column="1" Grid.Row="4" Grid.RowSpan="6" Grid.ColumnSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="Trip" DisplayMemberBinding="{Binding Trip}"/>
                     <GridViewColumn Width="100" Header="Period" DisplayMemberBinding="{Binding Period}"/>
                     <GridViewColumn Width="100" Header="TravelPals" DisplayMemberBinding="{Binding TravelPals}"/>
-                    <GridViewColumn Width="100" Header="TravelType" DisplayMemberBinding="{Binding TravelType}"/>
+                    <!--<GridViewColumn Width="100" Header="TravelType" DisplayMemberBinding="{Binding TravelType}"/>-->
                 </GridView>
             </ListView.View>
         </ListView>
