@@ -20,6 +20,7 @@ namespace TravelPal.Classes
             Location = location;
             FirstName = firstName;
             LastName = lastName;
+            Travels = new List<Travel>();
         }
     }
 }

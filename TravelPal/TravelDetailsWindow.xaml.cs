@@ -57,7 +57,7 @@ namespace TravelPal
                 }
                 else if (travelItem.GetType().Name == "WorkTrip")
                 {
-                    txtPurposeOfTrip.Text = "Work trip";
+                    txtPurposeOfTrip.Text = "Work Trip";
                     lblPurposeOfTrip.Content = "Meeting Details";
                     txtMeetingDetails.Visibility = Visibility.Visible;
                     rbIsAllInclusive.Visibility = Visibility.Hidden;
@@ -89,6 +89,21 @@ namespace TravelPal
                     }
                 }
             }
+        }
+
+        private void blkInformation_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Welcome to Details-Window!\n\n" +
+                "-You can view your trip-information below \n" +
+                "-To view a certain item in your packlist, simply select the item below\n" +
+                "-If you wish to edit your trip, click on \"Edit\" button and apply your changes\n" +
+                "-When you are done, click on \"Save\" button\n" +
+                "-If you do not wish to make any changes, click on \"Cancel\" button\n" +
+                "-On your upper right corner, you can choose to view User-profile, or click on \"Back\" to return", "Information - Navigation");
+        }
+        private void blkUser_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This function is currently not available!", "Error");
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

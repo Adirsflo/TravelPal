@@ -44,6 +44,19 @@ namespace TravelPal
 
             ClearPackinglistInput();
         }
+        private void blkInformation_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Welcome to Add Travel-Window!\n\n" +
+                "-Fill in the information about your trip below \n" +
+                "-If you wish to add an item to your packlist, you can do that by clicking on \"Add\" button\n" +
+                "-If you wish to remove an item from your packlist, select the item and click on \"Remove\" button\n" +
+                "-When you are done filling in all the information about the trip, click on \"Add Travel\" button\n" +
+                "-On your upper right corner, you can choose to view User-profile, or click on \"Back\" to return", "Information - Navigation");
+        }
+        private void blkUser_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This function is currently not available!", "Error");
+        }
         private void ClearPackinglistInput() // Clears input fields for Packinglist
         {
             txtAddItem.Text = string.Empty;
@@ -290,18 +303,27 @@ namespace TravelPal
 
                 // TODO: Ändra till lämpliga namn
                 Vacation userTrip = new(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, isAllInclusive);
-                foreach (ListViewItem i in lstAddedPacklist.Items)
+                foreach (ListViewItem tripItem in lstAddedPacklist.Items)
                 {
-                    IPackingListItem item = (IPackingListItem)i.Tag;
-                    userTrip.PackingList.Add(item);
+                    IPackingListItem vacationTrip = (IPackingListItem)tripItem.Tag;
+                    userTrip.PackingList.Add(vacationTrip);
                 }
 
                 // Lägg till den nya resan till vår användares lista
-                ((User)UserManager.signedInUser).Travels.Add(userTrip);
-                MessageBox.Show("New trip added! Returning to menu!", "Trip added");
-                TravelsWindow travelsWindow = new();
-                travelsWindow.Show();
-                Close();
+
+
+                if (UserManager.signedInUser != null)
+                {
+                    ((User)UserManager.signedInUser).Travels.Add(userTrip);
+                    MessageBox.Show("New trip added! Returning to menu!", "Trip added");
+                    TravelsWindow travelsWindow = new();
+                    travelsWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("ERROR", "Warning");
+                }
             }
             else if (cbNewTypeTrip.SelectedIndex == 2) // Work Trip
             {
@@ -314,6 +336,12 @@ namespace TravelPal
                 }
 
                 WorkTrip userTrip = new WorkTrip(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, newMeetingDetails);
+                foreach (ListViewItem tripItem in lstAddedPacklist.Items)
+                {
+                    IPackingListItem workTrp = (IPackingListItem)tripItem.Tag;
+                    userTrip.PackingList.Add(workTrp);
+                }
+
                 // Lägg till den nya resan till vår användares lista
                 ((User)UserManager.signedInUser).Travels.Add(userTrip);
                 MessageBox.Show("New trip added! Returning to menu!", "Trip added");

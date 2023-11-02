@@ -82,7 +82,7 @@
         <DatePicker Name="dpAddToTravelDate" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" SelectedDate="{Binding EndDate}" SelectedDateChanged="dpAddToTravelDate_SelectedDateChanged"/>
 
         <TextBlock Name="blkUser" Grid.Column="6" Grid.Row="1" Margin="0 0 0 0" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center">  
-            <Hyperlink FontStyle="Normal">
+            <Hyperlink Click="blkUser_Click" FontStyle="Normal">
                 <Hyperlink.Style>
                     <Style TargetType="Hyperlink"
                     BasedOn="{StaticResource {x:Type Hyperlink}}">
@@ -93,7 +93,7 @@
                 </Hyperlink>
         </TextBlock>
         <TextBlock Name="blkInformation" Grid.Column="6" Grid.Row="1" Margin="40 0 0 0" FontFamily="Arial" HorizontalAlignment="Left" VerticalAlignment="Center">  
-            <Hyperlink FontStyle="Normal">
+            <Hyperlink Click="blkInformation_Click" FontStyle="Normal">
                 <Hyperlink.Style>
                     <Style TargetType="Hyperlink"
                     BasedOn="{StaticResource {x:Type Hyperlink}}">
