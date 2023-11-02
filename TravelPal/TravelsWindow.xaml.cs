@@ -26,21 +26,29 @@ namespace TravelPal
             lblFullName.Content = signedInUser.FullName;
 
             lstMyTravels.Items.Clear();
-
-            foreach (var travel in user.Travels)
+            if (user.Travels != null)
             {
-                ListViewItem item = new();
-
-                item.Content = new
+                btnDetails.IsEnabled = true;
+                foreach (var travel in user.Travels)
                 {
-                    Trip = travel.Destination,
-                    Period = travel.StartDate.ToString("yyyy-MM-dd") + " - " + travel.EndDate.ToString("yyyy-MM-dd"),
-                    TravelPals = travel.Travellers,
-                };
-                item.Tag = travel;
+                    ListViewItem item = new();
 
-                lstMyTravels.Items.Add(item);
+                    item.Content = new
+                    {
+                        Trip = travel.Destination,
+                        Period = travel.StartDate.ToString("yyyy-MM-dd") + " - " + travel.EndDate.ToString("yyyy-MM-dd"),
+                        TravelPals = travel.Travellers,
+                    };
+                    item.Tag = travel;
+
+                    lstMyTravels.Items.Add(item);
+                }
             }
+            else
+            {
+                btnDetails.IsEnabled = false;
+            }
+
         }
 
         private void btnSignOut_Click(object sender, RoutedEventArgs e)
@@ -57,11 +65,9 @@ namespace TravelPal
 
         private void btnDetails_Click(object sender, RoutedEventArgs e)
         {
-            // FILL IN CODE
-            ListViewItem item = (ListViewItem)lstMyTravels.SelectedItem;
+            ListBoxItem selectedItem = (ListBoxItem)lstMyTravels.SelectedItem;
 
-
-            TravelDetailsWindow detailsWindow = new TravelDetailsWindow(item);
+            TravelDetailsWindow detailsWindow = new TravelDetailsWindow(selectedItem);
             detailsWindow.Show();
             Close();
         }

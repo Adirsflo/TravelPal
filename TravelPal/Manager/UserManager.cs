@@ -15,8 +15,8 @@ namespace TravelPal.Manager
             {
                 Travels = new List<Travel>()
                 {
-                    new Vacation("Madrid", Countries.Spain, 2, new List<IPackingListItem> {new OtherItem("Sunscreen", 2), new OtherItem("Ball", 2)}, new DateTime(2024, 10, 02), new DateTime(2024, 11, 01), 30, true),
-                    new WorkTrip("Hongkong", Countries.China, 1, new List<IPackingListItem> {new OtherItem("Jacket", 1), new TravelDocument("Passport", true)}, new DateTime(2024, 04, 01), new DateTime(2024, 04, 20), 19, "Bussines meeting for developing new strategy")
+                    new Vacation("Madrid", Countries.Spain, 2, new List<IPackingListItem> {new OtherItem("Sunscreen", 2), new OtherItem("Ball", 2)}, new DateTime(2024, 10, 02), new DateTime(2024, 11, 01), true),
+                    new WorkTrip("Hongkong", Countries.China, 1, new List<IPackingListItem> {new OtherItem("Jacket", 1), new TravelDocument("Passport", true)}, new DateTime(2024, 04, 01), new DateTime(2024, 04, 20), "Bussines meeting for developing new strategy")
                 }
             },
         };

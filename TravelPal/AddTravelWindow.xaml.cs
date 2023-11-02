@@ -109,14 +109,14 @@ namespace TravelPal
             }
         }
 
-        private void rbTravelDocumentTrue_Checked(object sender, RoutedEventArgs e) // If checked Yes... displays if the traveldocument is required
+        private void rbTravelDocumentTrue_Checked(object sender, RoutedEventArgs e) // If TravelDocument checked Yes... displays if the traveldocument is required
         {
             rbIsRequired.Visibility = Visibility.Visible;
             txtAddQuantity.Visibility = Visibility.Hidden;
             lblAddQuantityOrRequired.Content = "Required?";
         }
 
-        private void rbTravelDocumentFalse_Checked(object sender, RoutedEventArgs e) // If checked No... display TextBox for input of quantity of item
+        private void rbTravelDocumentFalse_Checked(object sender, RoutedEventArgs e) // If TravelDocument checked No... display TextBox for input of quantity of item
         {
             rbIsRequired.Visibility = Visibility.Hidden;
             txtAddQuantity.Visibility = Visibility.Visible;
@@ -129,7 +129,9 @@ namespace TravelPal
             string destinationLocation = ((Countries)cbNewCountry.SelectedIndex - 1).ToString();
 
             // Travel Documents is not required
-            if (userLocation == destinationLocation || (Enum.GetNames(typeof(EuropeanCountry)).Contains(userLocation)) & Enum.GetNames(typeof(EuropeanCountry)).Contains(destinationLocation))
+            if (userLocation == destinationLocation ||
+                (Enum.GetNames(typeof(EuropeanCountry)).Contains(userLocation)) &
+                Enum.GetNames(typeof(EuropeanCountry)).Contains(destinationLocation))
             {
                 // If we have same location as our destination OR if we live within EU and will travel within EU
                 rbRequiredFalse.IsChecked = true;
@@ -190,8 +192,6 @@ namespace TravelPal
                         MessageBox.Show("Please enter whole numbers in quantity!", "Packinglist Warning");
                         return;
                     }
-
-                    // Lägg till i PackingListItem
 
                     OtherItem otherItem = new(packingItem, packingQuantity);
 
@@ -288,7 +288,14 @@ namespace TravelPal
                     return;
                 }
 
-                Vacation userTrip = new(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, daysDifference, isAllInclusive);
+                // TODO: Ändra till lämpliga namn
+                Vacation userTrip = new(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, isAllInclusive);
+                foreach (ListViewItem i in lstAddedPacklist.Items)
+                {
+                    IPackingListItem item = (IPackingListItem)i.Tag;
+                    userTrip.PackingList.Add(item);
+                }
+
                 // Lägg till den nya resan till vår användares lista
                 ((User)UserManager.signedInUser).Travels.Add(userTrip);
                 MessageBox.Show("New trip added! Returning to menu!", "Trip added");
@@ -306,7 +313,7 @@ namespace TravelPal
                     return;
                 }
 
-                WorkTrip userTrip = new WorkTrip(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, daysDifference, newMeetingDetails);
+                WorkTrip userTrip = new WorkTrip(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, newMeetingDetails);
                 // Lägg till den nya resan till vår användares lista
                 ((User)UserManager.signedInUser).Travels.Add(userTrip);
                 MessageBox.Show("New trip added! Returning to menu!", "Trip added");
