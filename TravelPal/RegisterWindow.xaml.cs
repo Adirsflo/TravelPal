@@ -30,7 +30,7 @@ namespace TravelPal
         {
             // Gather variables
             string username = txtNewUsername.Text.ToLower();
-            Countries country = (Countries)cbNewCountry.SelectedIndex;
+            Countries country = (Countries)cbNewCountry.SelectedValue;
             string newPassword = txtNewPassword.Password;
             string confirmPassword = txtConfirmPassword.Password;
 

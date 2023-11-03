@@ -144,7 +144,7 @@ namespace TravelPal
             if (selectedItem != null)
             {
                 Travel selectedTrip = (Travel)selectedItem.Tag;
-                MessageBoxResult result = MessageBox.Show($"Are you sure you want to remove your trip to {selectedTrip.Destination}?", "Remove trip", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show($"Are you sure you want to remove the trip to {selectedTrip.Destination}?", "Remove trip", MessageBoxButton.YesNo);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -162,7 +162,7 @@ namespace TravelPal
                         User user = GetUserByUsername(selectedUser);
 
                         user.Travels.Remove(selectedTrip);
-                        UpdateAdminUi();
+                        lstMyTravels.Items.Remove(selectedTrip);
                     }
                 }
             }
@@ -180,7 +180,7 @@ namespace TravelPal
 
             if (user != null)
             {
-                lblMyTravels.Content = $"{selectedUser}s Travels"; // TODO: Check why this doesnt work
+                lblMyTravels.Content = $"{selectedUser}s Travels";
 
                 foreach (var travel in user.Travels)
                 {
