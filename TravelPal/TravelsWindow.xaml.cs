@@ -174,12 +174,13 @@ namespace TravelPal
 
         private void cbAllUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            lstMyTravels.Items.Clear();
             string selectedUser = (string)cbAllUsers.SelectedItem;
             User user = GetUserByUsername(selectedUser);
 
             if (user != null)
             {
-                lblAllUsers.Content = $"{selectedUser}s Travels"; // TODO: Check why this doesnt work
+                lblMyTravels.Content = $"{selectedUser}s Travels"; // TODO: Check why this doesnt work
 
                 foreach (var travel in user.Travels)
                 {
