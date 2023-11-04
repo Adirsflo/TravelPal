@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\Splash1.png" />
     <None Remove="Image\TravelPalLogo.png" />
-    <None Remove="Image\TravelPalSplash.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,9 +19,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SplashScreen Include="Image\TravelPalSplash.png">
+    <SplashScreen Include="Image\Splash1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </SplashScreen>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Image\bbye.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Image\TravelSplash.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
