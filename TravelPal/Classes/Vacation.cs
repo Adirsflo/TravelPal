@@ -12,13 +12,5 @@ namespace TravelPal.Classes
         {
             AllInclusive = allInclusive;
         }
-
-        public void _Vacation(bool allInclusive)
-        {
-        }
-        public string GetInfo()
-        {
-            return "";
-        }
     }
 }

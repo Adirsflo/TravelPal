@@ -11,14 +11,9 @@
             Required = required;
         }
 
-        public void Document(string name, bool required)
-        {
-
-        }
-
         public string GetInfo()
         {
-            return "";
+            return $"Document: {Name} - Required: {(Required ? "Yes" : "No")}";
         }
     }
 }

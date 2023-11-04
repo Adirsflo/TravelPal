@@ -9,31 +9,20 @@ namespace TravelPal
         {
             InitializeComponent();
         }
-
         private void blkRegister_Click(object sender, RoutedEventArgs e)
         {
+            // Allows the user to register a new account
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.Show();
             Close();
         }
-
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            //string username;
-
-            //try
-            //{
-            //    username = txtUsername.Text;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Please fill in the fields!", "Warning");
-            //}
-            //string password;
-
+            // Gather inputs
             string username = txtUsername.Text;
             string password = txtPassword.Password;
 
+            // Checks if user input was correct
             bool isSignedIn = UserManager.SignInUser(username, password);
 
             if (isSignedIn == true)

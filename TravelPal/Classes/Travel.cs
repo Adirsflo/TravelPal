@@ -10,11 +10,9 @@ namespace TravelPal.Classes
         public Countries Country { get; set; }
         public int Travellers { get; set; }
         public List<IPackingListItem> PackingList { get; set; }
-        public DateTime StartDate { get; set; } // Ändra i XAML
-        public DateTime EndDate { get; set; } // Ändra i XAML
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public int TravelDays { get; set; }
-
-
         public Travel(string destination, Countries country, int travellers, List<IPackingListItem> packingList, DateTime startDate, DateTime endDate)
         {
             Destination = destination;
@@ -24,20 +22,5 @@ namespace TravelPal.Classes
             StartDate = startDate;
             EndDate = endDate;
         }
-
-        public virtual string GetInfo()
-        {
-            // FILL IN CODE
-            return "I have not made a trip yet!";
-        }
-
-        private int CalculateTravelDays()
-        {
-            // FILL IN CODE??
-            int travelDateFrom = Convert.ToInt32(StartDate);
-            int travelDateTo = Convert.ToInt32(EndDate);
-            return travelDateFrom - travelDateTo;
-        }
-
     }
 }

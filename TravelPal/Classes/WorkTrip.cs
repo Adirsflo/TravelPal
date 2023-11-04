@@ -12,14 +12,5 @@ namespace TravelPal.Classes
         {
             MeetingDetails = meetingDetails;
         }
-
-        public void Trip(string meetingDetails)
-        {
-        }
-
-        public string GetInfo()
-        {
-            return "";
-        }
     }
 }

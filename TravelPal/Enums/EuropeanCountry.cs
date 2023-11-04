@@ -7,7 +7,7 @@
         Bulgaria,
         Croatia,
         Cyprus,
-        CzechRepublic,
+        Czech_Republic,
         Denmark,
         Estonia,
         Finland,

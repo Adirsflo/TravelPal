@@ -12,6 +12,7 @@ namespace TravelPal
         {
             InitializeComponent();
 
+            // Loops over all countries for the user to choose between
             cbNewCountry.Items.Add("--Select Country--");
             foreach (var country in Enum.GetValues(typeof(Countries)))
             {
@@ -19,14 +20,12 @@ namespace TravelPal
             }
             cbNewCountry.SelectedIndex = 0;
         }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e) // Returns from current window to MainWindow
         {
             // Makes sure user ACTUALLY wants to cancel registration
             CancelToMainWindow();
         }
-
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        private void btnRegister_Click(object sender, RoutedEventArgs e) // Creating a new user
         {
             // Gather variables
             string username = txtNewUsername.Text.ToLower();
@@ -78,16 +77,9 @@ namespace TravelPal
                     mainWindow.Show();
                     Close();
                 }
-                else
-                {
-                    // If username is taken, throw error
-                }
             }
-            // Make sure that no numbers is typed in FirstName and LastName
-            // If Names has numbers... "Names can't involve numbers"
         }
-
-        private void CancelToMainWindow()
+        private void CancelToMainWindow() // Method for returning to MainWindow
         {
             if (txtNewUsername.Text != "" || txtNewFirstName.Text != "" || txtNewLastName.Text != "" || txtNewPassword.Password != "" || txtConfirmPassword.Password != "")
             {
@@ -106,8 +98,7 @@ namespace TravelPal
                 Close();
             }
         }
-
-        private string CapitalizeFirstLetter(string name)
+        private string CapitalizeFirstLetter(string name) // Capitalizing First and Last Name
         {
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
             return textInfo.ToTitleCase(name);

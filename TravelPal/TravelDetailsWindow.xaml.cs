@@ -2,25 +2,23 @@
 using System.Windows;
 using System.Windows.Controls;
 using TravelPal.Classes;
-using TravelPal.Manager;
 
 namespace TravelPal
 {
     public partial class TravelDetailsWindow : Window
     {
-        IUser signedInUser = UserManager.signedInUser;
-
         public TravelDetailsWindow(ListBoxItem item)
         {
             InitializeComponent();
             UpdateUi(item);
         }
 
-        private void UpdateUi(ListBoxItem item)
+        private void UpdateUi(ListBoxItem item) // Loads the selected travel to UI
         {
             if (item != null)
             {
                 Travel travelItem = (Travel)item.Tag;
+                lblDetails.Content = "Details for " + travelItem.Destination;
                 lblCountry.Content = travelItem.Country;
                 txtCountry.Text = travelItem.Country.ToString();
                 txtCity.Text = travelItem.Destination;
@@ -28,7 +26,7 @@ namespace TravelPal
                 dpFromTravelDate.Text = travelItem.StartDate.ToString();
                 dpToTravelDate.Text = travelItem.EndDate.ToString();
 
-                // Ändra dates
+                // Changes the dates
                 DateTime startDate = dpFromTravelDate.SelectedDate.Value;
                 DateTime endDate = dpToTravelDate.SelectedDate.Value;
                 int daysDifference = (int)(endDate - startDate).TotalDays;
@@ -91,12 +89,12 @@ namespace TravelPal
             }
         }
 
-        private void blkInformation_Click(object sender, RoutedEventArgs e)
+        private void blkInformation_Click(object sender, RoutedEventArgs e) // Shows information for navigating the current window
         {
             MessageBox.Show("Welcome to Details-Window!\n\n" +
-                "-You can view your trip-information below \n" +
-                "-To view a certain item in your packlist, simply select the item below\n" +
-                "-If you wish to edit your trip, click on \"Edit\" button and apply your changes\n" +
+                "-You can view the trip-information below \n" +
+                "-To view a certain item in the packlist, simply select the item below\n" +
+                "-If you wish to edit the trip, click on \"Edit\" button and apply the changes\n" +
                 "-When you are done, click on \"Save\" button\n" +
                 "-If you do not wish to make any changes, click on \"Cancel\" button\n" +
                 "-On your upper right corner, you can choose to view User-profile, or click on \"Back\" to return", "Information - Navigation");
@@ -106,14 +104,14 @@ namespace TravelPal
             MessageBox.Show("This function is currently not available!", "Error");
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e) // Returns to previous page
         {
             TravelsWindow travelsWindow = new TravelsWindow();
             travelsWindow.Show();
             Close();
         }
 
-        private void lstPacklist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lstPacklist_SelectionChanged(object sender, SelectionChangedEventArgs e) // If there is any selected PackingItem, it will be displayed in the fields
         {
             ListBoxItem selectedItem = (ListBoxItem)lstPacklist.SelectedItem;
 

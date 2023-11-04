@@ -10,6 +10,5 @@ namespace TravelPal.Classes
         public string LastName { get; set; } = "Adminsson";
         public string FullName { get { return FirstName + " " + LastName; } }
         public Countries Location { get; set; }
-
     }
 }

@@ -16,19 +16,22 @@ namespace TravelPal
 
             if (signedInUser.GetType().ToString() == (typeof(User).ToString()))
             {
+                // If User is Signed In... Load User UI
                 UpdateUserUi();
             }
             else if (signedInUser.GetType().ToString() == (typeof(Admin).ToString()))
             {
+                // If Admin is Signed In... Load Admin UI
                 UpdateAdminUi();
             }
         }
 
-        private void UpdateAdminUi()
+        private void UpdateAdminUi() // Loading Admin UI
         {
             Admin admin = (Admin)signedInUser;
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
+            // Capitalizing the first letter in username
             lblWelcomeUsername.Content = "Welcome " + textInfo.ToTitleCase(signedInUser.Username);
             lblFullName.Content = signedInUser.FullName;
 
@@ -40,6 +43,7 @@ namespace TravelPal
 
             foreach (var user in UserManager.UserList)
             {
+                // Loading and capitalizing all first letter of Username (Except admin)
                 if (user.GetType().ToString() != (typeof(Admin).ToString()))
                 {
                     cbAllUsers.Items.Add(textInfo.ToTitleCase(user.Username));
@@ -47,11 +51,12 @@ namespace TravelPal
             }
         }
 
-        private void UpdateUserUi()
+        private void UpdateUserUi() // Loading User UI
         {
             User user = (User)signedInUser;
-            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
+            // Capitalixing first name of Username
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
             lblWelcomeUsername.Content = "Welcome " + textInfo.ToTitleCase(signedInUser.Username);
             lblFullName.Content = signedInUser.FullName;
 
@@ -62,6 +67,7 @@ namespace TravelPal
             {
                 ListViewItem item = new();
 
+                // Setting the right format in the ListView
                 item.Content = new
                 {
                     Trip = travel.Destination,
@@ -74,7 +80,7 @@ namespace TravelPal
             }
         }
 
-        private void btnSignOut_Click(object sender, RoutedEventArgs e)
+        private void btnSignOut_Click(object sender, RoutedEventArgs e) // Allows user to sign out and making sure 
         {
             MessageBoxResult result = MessageBox.Show("Are you sure you want to sign out?", "Signing out", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
@@ -86,7 +92,7 @@ namespace TravelPal
             }
         }
 
-        private void btnDetails_Click(object sender, RoutedEventArgs e)
+        private void btnDetails_Click(object sender, RoutedEventArgs e) // Viewing selected trips details in a new window
         {
             ListBoxItem selectedItem = (ListBoxItem)lstMyTravels.SelectedItem;
 
@@ -102,17 +108,18 @@ namespace TravelPal
             }
         }
 
-        private void btnAddTravel_Click(object sender, RoutedEventArgs e)
+        private void btnAddTravel_Click(object sender, RoutedEventArgs e) // Opening a new window for adding a new travel
         {
             AddTravelWindow addTravelWindow = new AddTravelWindow();
             addTravelWindow.Show();
             Close();
         }
 
-        private void blkInformation_Click(object sender, RoutedEventArgs e)
+        private void blkInformation_Click(object sender, RoutedEventArgs e) // Viewing information for current window
         {
             if (signedInUser.GetType().ToString() == (typeof(User).ToString()))
             {
+                // Information for User
                 MessageBox.Show("Welcome to TravelPal!\n\n" +
                     "-You can view your trip under \"My Travels\"\n" +
                     "-To view a certain trip, select the trip and then click on \"Details\" button\n" +
@@ -122,6 +129,7 @@ namespace TravelPal
             }
             else if (signedInUser.GetType().ToString() == (typeof(Admin).ToString()))
             {
+                // Information for Admin
                 MessageBox.Show("Welcome to Admin-view!\n\n" +
                     "-You can view all trips under \"All Travels\"\n" +
                     "-To view the trips from a user, select the trip under \"Users\"\n" +
@@ -131,12 +139,12 @@ namespace TravelPal
             }
         }
 
-        private void blkUser_Click(object sender, RoutedEventArgs e)
+        private void blkUser_Click(object sender, RoutedEventArgs e) // Hyperlink for an undeveloped nice-to-have window
         {
             MessageBox.Show("This function is currently not available!", "Error");
         }
 
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        private void btnRemove_Click(object sender, RoutedEventArgs e) // Removes a trip
         {
             ListBoxItem selectedItem = (ListBoxItem)lstMyTravels.SelectedItem;
             ListViewItem itemToRemove = (ListViewItem)selectedItem;
@@ -172,7 +180,7 @@ namespace TravelPal
             }
         }
 
-        private void cbAllUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbAllUsers_SelectionChanged(object sender, SelectionChangedEventArgs e) // ComboBox for Admin that shows All Users
         {
             lstMyTravels.Items.Clear();
             string selectedUser = (string)cbAllUsers.SelectedItem;
@@ -199,7 +207,7 @@ namespace TravelPal
             }
         }
 
-        private User GetUserByUsername(string username)
+        private User GetUserByUsername(string username) // Retrieving selected username
         {
             foreach (var account in UserManager.UserList)
             {
