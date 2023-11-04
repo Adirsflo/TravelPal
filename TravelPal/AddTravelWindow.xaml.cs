@@ -169,7 +169,7 @@ namespace TravelPal
         private void AddPassportIfRequired() // The Passport will automaticly be added to the bag with status of required
         {
             string userLocation = signedInUser.Location.ToString();
-            string destinationLocation = ((Countries)cbNewCountry.SelectedIndex - 1).ToString();
+            string destinationLocation = ((Countries)cbNewCountry.SelectedIndex).ToString();
             // Travel Documents is not required
             if (userLocation == destinationLocation || (Enum.GetNames(typeof(EuropeanCountry)).Contains(userLocation)) & Enum.GetNames(typeof(EuropeanCountry)).Contains(destinationLocation))
             {
@@ -232,6 +232,11 @@ namespace TravelPal
             }
             else if (rbTravelDocumentFalse.IsChecked == true) // If its OtherItems...
             {
+                if (packingItem.ToLower().Trim() == "passport") // ... Make sure passport its not added
+                {
+                    MessageBox.Show("You dont need to pack your Passport!\nWe will automaticly do that for you and set the Required State!", "Packinglist Warning");
+                    return;
+                }
                 if (String.IsNullOrEmpty(txtAddQuantity.Text))
                 {
                     MessageBox.Show("Please enter quantity of items!", "Packinglist Warning");
@@ -301,6 +306,12 @@ namespace TravelPal
 
             Countries newCountry = (Countries)cbNewCountry.SelectedItem;
             string newCity = txtNewCity.Text;
+
+            // Capitalizing the first letter of the item word
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            string convertedNewCity = textInfo.ToTitleCase(newCity);
+
+
             DateTime startDate;
             DateTime endDate;
             int daysDifference;
@@ -327,7 +338,7 @@ namespace TravelPal
             }
 
 
-            if (String.IsNullOrEmpty(newCity))
+            if (String.IsNullOrEmpty(convertedNewCity))
             {
                 MessageBox.Show("Please enter a city to visit!", "Warning");
                 return;
@@ -350,6 +361,14 @@ namespace TravelPal
 
             }
 
+            // Makes sure user doesnt want to add more items to the packlist
+            MessageBoxResult result = MessageBox.Show("Are you sure you dont want to add more items to your packlist?", "Warning", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
+
             if (cbNewTypeTrip.SelectedIndex == 1) // Type of trip is .... Vacation
             {
                 if (rbAllInclusiveTrue.IsChecked == true)
@@ -369,7 +388,7 @@ namespace TravelPal
                 AddPassportIfRequired();
 
                 // Adds the trip to users Travel, and if there is any PackingListItem... this will be added in the list
-                Vacation addingUserTrip = new(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, isAllInclusive);
+                Vacation addingUserTrip = new(convertedNewCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, isAllInclusive);
                 foreach (ListViewItem tripItem in lstAddedPacklist.Items)
                 {
                     IPackingListItem vacationTrip = (IPackingListItem)tripItem.Tag;
@@ -398,7 +417,7 @@ namespace TravelPal
                 AddPassportIfRequired();
 
                 // Adds the trip to users Travel, and if there is any PackingListItem... this will be added in the list
-                WorkTrip addingUserTrip = new WorkTrip(newCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, newMeetingDetails);
+                WorkTrip addingUserTrip = new WorkTrip(convertedNewCity, newCountry, newAmountTravelers, new List<IPackingListItem> { }, startDate, endDate, newMeetingDetails);
                 foreach (ListViewItem tripItem in lstAddedPacklist.Items)
                 {
                     IPackingListItem workTrp = (IPackingListItem)tripItem.Tag;
