@@ -111,7 +111,8 @@ namespace TravelPal
             Close();
         }
 
-        private void lstPacklist_SelectionChanged(object sender, SelectionChangedEventArgs e) // If there is any selected PackingItem, it will be displayed in the fields
+        // If there is any selected PackingItem, it will be displayed in the fields
+        private void lstPacklist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem selectedItem = (ListBoxItem)lstPacklist.SelectedItem;
 
@@ -121,6 +122,7 @@ namespace TravelPal
 
                 txtItem.Text = selectedPackingItem.Name;
 
+                // If the item is a TravelDocument
                 if (selectedPackingItem.GetType().ToString() == (typeof(TravelDocument).ToString()))
                 {
                     rbTravelDocumentTrue.IsChecked = true;
@@ -142,6 +144,7 @@ namespace TravelPal
                     }
 
                 }
+                // If the item is Other Items
                 else if (selectedPackingItem.GetType().ToString() == (typeof(OtherItem).ToString()))
                 {
                     rbTravelDocumentFalse.IsChecked = true;

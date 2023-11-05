@@ -62,12 +62,6 @@ namespace TravelPal
                 // If the name-fields are empty
                 MessageBox.Show("Please fill in your full name!", "Warning");
             }
-            // Make sure that the user select country
-            //else if (cbNewCountry.SelectedIndex <= 0)
-            //{
-            //    // If nothing is selected, send a warning
-            //    MessageBox.Show("Please choose a country!", "Warning");
-            //}
             // If the password-fields are empty
             else if (newPassword == "" && confirmPassword == "")
             {
