@@ -27,9 +27,24 @@ namespace TravelPal
         }
         private void btnRegister_Click(object sender, RoutedEventArgs e) // Creating a new user
         {
+
+            Countries country;
+
+            // Make sure that the user select country
+            try
+            {
+                country = (Countries)cbNewCountry.SelectedValue;
+            }
+            catch (InvalidCastException)
+            {
+                // If nothing is selected, send a warning
+                MessageBox.Show("Please choose a country!", "Warning");
+                return;
+            }
+
             // Gather variables
             string username = txtNewUsername.Text.ToLower();
-            Countries country = (Countries)cbNewCountry.SelectedValue;
+
             string newPassword = txtNewPassword.Password;
             string confirmPassword = txtConfirmPassword.Password;
 
@@ -45,14 +60,14 @@ namespace TravelPal
             else if (txtNewFirstName.Text == "" || txtNewLastName.Text == "")
             {
                 // If the name-fields are empty
-                MessageBox.Show("Please fill in your name!", "Warning");
+                MessageBox.Show("Please fill in your full name!", "Warning");
             }
             // Make sure that the user select country
-            else if (cbNewCountry.SelectedIndex <= 0)
-            {
-                // If nothing is selected, send a warning
-                MessageBox.Show("Please choose a country!", "Warning");
-            }
+            //else if (cbNewCountry.SelectedIndex <= 0)
+            //{
+            //    // If nothing is selected, send a warning
+            //    MessageBox.Show("Please choose a country!", "Warning");
+            //}
             // If the password-fields are empty
             else if (newPassword == "" && confirmPassword == "")
             {
